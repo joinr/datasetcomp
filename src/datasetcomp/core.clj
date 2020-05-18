@@ -1,7 +1,8 @@
 (ns datasetcomp.core
-  (:require [spork.util.table :as tbl]
-            [tech.ml.dataset.csv :as tech]
-            [datasetcomp.tablesaw :as tablesaw]
+  (:require #_[spork.util.table :as tbl]
+            #_[tech.ml.dataset.csv :as tech]
+            [tech.ml.dataset :as ds]
+            #_[datasetcomp.tablesaw :as tablesaw]
             [clj-memory-meter.core :as mm]))
 
 (def the-data (atom nil))
@@ -186,5 +187,15 @@
   0, "DemandName" "10661_Katie_16500FD00_[1...722]", "GhostFilled"
   0, "TotalFilled" 2, "t" 1, "Deployed"
   2, "SRC" "16500FD00", "DemandGroup" "Molly", "Quarter" 1, "NGFilled"
-  1, "RCFilled" 1, "Overlapping" 0} )
+     1, "RCFilled" 1, "Overlapping" 0}
+
+  ;;now using tech.ml.dataset 
+  (timed-build :tech.ml.dataset    (ds/->dataset events))
+  ;; [:clearing-data-and-gcing]
+  ;; [:evaluating :tech.ml.dataset :as ((ds/->dataset events))]
+  ;; "Elapsed time: 3593.6022 msecs"
+  ;; [:measuring-memory-usage!]
+  ;; 94.0 MB
+
+  )
 

@@ -3,9 +3,10 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [spork "0.2.1.1-SNAPSHOT" :exclusions [org.clojure/core.async]]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 #_[spork "0.2.1.1-SNAPSHOT" :exclusions [org.clojure/core.async]]
                  [org.clojure/core.async "0.4.490"]
-                 [techascent/tech.ml-base "3.3"]
-                 [tech.tablesaw/tablesaw-core "LATEST"]
+                 #_[techascent/tech.ml-base "3.3"]
+                 #_[tech.tablesaw/tablesaw-core "LATEST"]
+                 [techascent/tech.ml.dataset "2.0-beta-44"]
                  [com.clojure-goes-fast/clj-memory-meter "0.1.2"]])
