@@ -2,6 +2,7 @@
   (:require #_[spork.util.table :as tbl]
             #_[tech.ml.dataset.csv :as tech]
             [tech.ml.dataset :as ds]
+            #_[smile.io :as io]
             #_[datasetcomp.tablesaw :as tablesaw]
             [clj-memory-meter.core :as mm]))
 
@@ -19,7 +20,8 @@
          (println (mm/measure (deref ~'datasetcomp.core/the-data)))))
         
 ;;Monkey patched a couple of things into spork and tech
-(require 'datasetcomp.patches)
+(comment
+  (require 'datasetcomp.patches))
 ;;comparative testing...
 (comment
   ;;about 197mb source file.
@@ -189,11 +191,28 @@
   2, "SRC" "16500FD00", "DemandGroup" "Molly", "Quarter" 1, "NGFilled"
      1, "RCFilled" 1, "Overlapping" 0}
 
-  ;;now using tech.ml.dataset 
-  (timed-build :tech.ml.dataset    (ds/->dataset events))
+  ;;now using tech.ml.dataset 2.4
+  (timed-build :tech.ml.dataset-2.0-beta-44    (ds/->dataset events))
   ;; [:clearing-data-and-gcing]
   ;; [:evaluating :tech.ml.dataset :as ((ds/->dataset events))]
   ;; "Elapsed time: 3593.6022 msecs"
+  ;; [:measuring-memory-usage!]
+  ;; 94.0 MB
+
+  ;;comparing with SMILEs dataframe..
+  (timed-build :smile.dataframe-2.4.0 (io/read-csv events))
+  ;; [:clearing-data-and-gcing]
+  ;; [:evaluating :smile.dataframe :as ((io/read-csv events))]
+  ;; "Elapsed time: 2020.9463 msecs"
+  ;; [:measuring-memory-usage!]
+  ;; 482.8 MB
+
+
+  ;;hmm, no change.
+  (timed-build :tech.ml.dataset-2.0-beta-54    (ds/->dataset events))
+  ;; [:clearing-data-and-gcing]
+  ;; [:evaluating :tech.ml.dataset-2.0-beta-54 :as ((ds/->dataset events))]
+  ;; "Elapsed time: 3655.1218 msecs"
   ;; [:measuring-memory-usage!]
   ;; 94.0 MB
 

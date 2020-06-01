@@ -8,5 +8,6 @@
                  [org.clojure/core.async "0.4.490"]
                  #_[techascent/tech.ml-base "3.3"]
                  #_[tech.tablesaw/tablesaw-core "LATEST"]
-                 [techascent/tech.ml.dataset "2.0-beta-44"]
+                 #_[org.clojars.haifengl/smile "2.4.0"]
+                 [techascent/tech.ml.dataset "2.0-beta-54"]
                  [com.clojure-goes-fast/clj-memory-meter "0.1.2"]])
